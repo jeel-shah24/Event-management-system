@@ -1,0 +1,1077 @@
+DBMS PROJECT REPORT –
+EVENT MANAGEMENT
+Submitted by:        1) Jeel Shah(U101114FCS172)
+                               2) Priyanka(U101114FCS074)
+                               3) Marthala Supraja Reddy(U101114FCS091)
+                               4) Mansi Mahesh singh(U101114FCS090)
+                              5) Jallepalli Prerna(U101114FCS0174)
+
+
+
+
+
+
+
+
+CONTENT
+
+ 1) INTRODUCTION
+
+2) ER  MODEL
+
+3) ER DIAGRAM
+
+4) ER DIAGRAM TO RELATIONAL MODEL
+
+5) NORMALIZING THE DATABASE
+
+6) CONVERTING INTO RELATIONAL TABLES
+
+7) SQL CODE
+
+8) SOFTWARE USED
+
+     9)OTHER DETAILS –TRIGGERS
+
+INTRODUCTION
+Database management systems(DBMSs) are specially designed software applications that interact with the user, other applications, and the database itself to capture and analyse data. The event management database we have it for event  managers. In this database manager will get every information about every event which is done and which are going on in future.
+Database normalization is the process of organizing the fields and tables of a relational database to minimize redundancy. Normalization usually involves dividing large tables into smaller (and less redundant) tables and defining relationships between them. Most 3NF tables are free of insertion, update, and deletion anomalies
+This project includes the program included that helps us to check which normal form dependencies of a table satisfy.
+The objective of this project is to design the database event  Management Database which manages and stores all possible event  related informations. To find which Normal Form the dependencies for a particular relation lies in.
+
+ESSENCE OF THE PROJECT
+
+This project is especially designed for event managers.  The event manager will be able to feed in keep record and project reports of his work. It provides a user friendly approach for handling all the services .Some of the important features of the project are
+Events:  gives information about all the requirements of services and products of the event being organized.
+Reports:  reports can be generated for tracking success/process at different levels .
+Vendor -Specific List:  generate specialized list of products and services ordered from a specific vendor.
+Easy Tracking: keeps simplified track of employee /manager/ head appointed to an event.
+Scope of Improvement:  allows for improvement by reviewing user feedback.
+
+Present event managers (mostly small scale) face problems in tracking the requirements of an event when they are handling multiple events at a time. Special employees are also appointed  for managing the records for the events. The project provides an easy and automated approach that saves time, money, and mind-memory.
+The project ensures real time feeding of data in a secure place which avoids data loss in offline logging due to any physical mishap and saves time wasted in unnecessary paper-work.
+This project has been developed to overcome difficulties in utilization of present existing systems in general. Here users to the system are the event management company heads, managers and employees.
+PROBLEM DESCRIPTION
+
+This project is designed for event managers. The event manager will be able to feed in, keep record, project reports of his work. It provides a user friendly approach for handling all the services. Every event has its own  type, date, time, feedback, transportation charges ,budget  and an unique event ID. It has customers who can sponsor various events and have first name, last name ,address,  phone no, username ,password, discount  and unique customer ID. Every event needs various Electronic Equipments containing name, cost, unique ID, which are supplied by various Electronic companies having their unique ID, Address, email id ,name. For decoration purpose there are different types of decoration and their respective costs which will be supplied by different decorators having name, unique ID, mail id and address. Since there are many events held, each of these events are headed by one Manager.
+Various employees are appointed to an event having first name, last name,unique E_ID, phone no, address, salary. These employees could be either managers or a part of the logistics team. Each Manager has an unique manager ID and department. Each of the logistics team members have work_ allotment and unique ID.
+For making events more interesting informals are conducted. Every informal has its own unique informal ID , name, mail id, type, address. Events orders for the food of different types and their respective cost which is supplied by caterers who have their unique id, name, address, mail id. Each and every event is located at a particular venue .Venue is specified by its unique Id, name, capacity, rent, phone, address. Transportation is provided to an event is defined by the type of vehicle customer requires,cost per km  and the number of seats that vehicle has. Transportation is provided by Transport Company with name, id, phone number, address. Some events like stage plays, marriages require makeup. There are different make up services which will be provided and each of the makeup service has its own cost and type. The makeup artists are from parlours. Since there are different parlours, hence each of them has its own specific name, unique id ,mail id  and address. Since moments in the event have to be captured, so these are done by the photographers who cover the entire event. Each photographer has mail id , address, pay, ID, first name,lastname for further contacting.
+For entertaining the guests in the event, different performances are held. These performances are performed in the event by performers who have their unique ID, name, salary, mail id  and address. Performers are classified into dancers, musicians, fillers and anchors. Each dancer has his/her unique ID and their forte. Similarly anchors have gender and unique ID. Fillers who help in entertaining the guests in the events appear in between the performances like mimicry, comedians etc who have their own unique ID and type. There will be music which will be performed and each different type of music has its unique music ID and type.
+ER MODEL
+Our ER Model contains the following entities:
+Entity Scheme:-
+1. managers(emp_id, department)
+2. logistics(emp_id,workallotted)
+3. dancers(per_id,forte)
+4. transportation(cost_per_km,no_of_seats,vehicle_name)
+5. musician(per_id,type)
+6. fillers(per_id,type)
+7. anchor(per_id,gender)
+8. parlour (par_id,par_name,par_mail_id,par_add)
+9. makeup(type,charges)
+10. venue(v_id,v_name,capacity,v_add,v_rent,v_phn)
+11. t_company(t_id,t_phn,t__add,t_name)
+12. caterers(cat_id,cat_name,cat_mail_id,cat_add)
+13. food(cost,type)
+14. decorators(dec_id,dec_add,dec_mail_id,dec_name)
+15. decoration(type,charge)
+16. Ecompany(e_id,e_add,e_name,e_mail_id)
+17. Elec_equip(el_id,el_name,cost)
+18. photographers(P_Id,P_Fname,P_Lname,P_Add,P_mail_id,P_charges)
+19. informals(I_id,I_name,type,I_add,I_mail_id,cost)
+20. event(eve_id,eve_date,eve_time,eve_feedback,eve_type,eve_budget,eve_trans_charges)
+21. performer(per_id,per_fname,per_lname,per_mail_id,per_add,per_salary
+22. employees(emp_id,emp_fname,emp_lname,emp_add,emp_phn,emp_salary)
+23. customer(cust_id, first_name, last_name, email_id, password,     username,discount,c_phone,c_address)
+24. venueaddress  (v_id, pincode , city, state, line1 , line2)
+
+Relations scheme:-
+25. decorated_by(dec_id,type) :-   one-one relation
+25. supplied_by(e_id,el_id) :-  many-many relation
+25. from(par_id,type) :- one-one relation
+25. provided_by(t_id,vehicle_name) :- many-many relation
+25. served_by(type,cat_id) :- many-many relation
+25. requires(Eve_id,type) :- one-many relation
+25. held_at(Eve_id,v_id) :-  many-one relation
+32.      arranged_for(Eve_id,vehicle_name) :- many-many relation
+32. order_for(Eve_id,type) :- many-one relation
+32. needs(Eve_id,el_id) :- many-many relation
+32. has(Eve_id,type) :- many-one relation
+32. sponsored_by(c_id,Eve_id) :- many-one relation
+32. covered_by(Eve_id,P_id) :- many-one relation
+32. conducted(Eve_id,I_id) :- many-many relation
+32. performs_in(Eve_id,per_id) :- many-many relation
+32. appointed_to(Eve_id,emp_id) :- many-many relation
+32. heads(Eve_id,emp_id) :- many-one relation
+32. located_at(v_id, v_code) :- one-one relation
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Conversion of ER to Relational Model:
+
+
+
+ER Diagram to Relational Model:
+
+
+
+Table Schema Description:
+
+1. managers(emp_id, department)
+Primary key: emp_id
+Candidate key: emp_id
+Prime attributes: emp_id
+
+Functional dependencies:
+emp_id→department
+
+There is only 1 FD so the managers is in BCNF
+
+2) logistics( emp_id, workalloted)
+
+Primary key: emp_id
+
+Candidate key: emp_id
+Prime attributes: emp_id
+
+Functional dependencies:
+emp_id→workalloted
+
+There is only 1 FD so the logistics is in BCNF
+
+3) customer(cust_id, first_name, last_name, email_id, password,     username,discount,c_phone,c_address)
+Primary key: c_id
+c_phone can be multivalued thus the table needs to be divided.Therefore:
+
+i) customer1(cust_id, c_fname, c_lname, email_id, password, username,discount,c_address)
+ii) customer2(c_id,c_phone)
+
+i) customer1(c_id, c_fname, c_lname, c_mail_id, password,  username,discount)
+
+Primary key : c_id
+
+Candidate keys/Prime attributes : c_id, username, c_mail_id,( c_fname c_lname c_address)
+
+Functional dependencies -
+
+c_id→  c_fname, c_lname, c_mail_id, password, username, discount
+
+c_mail_id→ c_fname, c_lname, c_id, password, username, discount
+
+username→ c_fname, c_lname, c_mail_id, password, c_id, discount
+
+c_fname c_lname c_address →  c_mail_id, password, c_id, discount, username
+
+As left side dependencies are a superkey in each FD. Hence, it is in BCNF. If the relational schema is in BCNF then all the redundancy based on functional dependencies has been removed, although other types of redundancy may still exist. A relational schema R is in Boyce-codd normal form if and only if for every one of its dependencies is a trivial functional dependency, provided the determinant  is a super key.
+
+
+
+ii) customer2(c_id,c_phone)
+Primary key: c_id
+Candidate key: c_id
+Prime attributes: c_id
+
+Functional dependencies:
+c_id→phone
+
+There is only 1 FD so the customer2 is in BCNF
+
+4). venue(v_id,v_name,capacity,v_add,v_rent,v_phn)
+Primary Key : v_id
+v_phn can have multivalued data because of phone number hence table                                       needs to be divided
+venue1(v_id, v_name,capacity,v_add,v_rent)
+venue2(v_id,v_phn)
+
+venue1(v_id,v_name,capacity,v_add,v_rent)
+Primary key:   v_id
+
+Candidate key:  v_id,  v_name v_add,
+
+Prime attributes:-   v_id, v_name, v_add
+
+Functional  Dependencies:-
+v_id →v_name, capacity, v_add, v_rent
+v_name v_add →v_id, capacity, v_rent
+
+As left side dependencies are a superkey in each FD. Hence, it is in BCNF. If the relational schema is in BCNF then all the redundancy based on functional dependencies has been removed, although other types of redundancy may still exist. A relational schema R is in Boyce-codd normal form if and only if for every one of its dependencies is a trivial functional dependency, provided the determinant is a super key.
+
+
+venue2(v_id,v_phn)
+
+Primary key:   v_id
+
+Candidate key:  v_id
+
+Prime attributes:-   v_id
+
+Functional  Dependencies:-
+v_id →v_phn
+
+There is only one functional dependency so it is in BCNF
+
+5) dancers( per_id, forte)
+
+Primary key: per_id
+
+Candidate key: per_id
+Prime attributes: per_id
+
+Functional dependencies:
+per_id→forte
+There is only one functional dependency so it is in BCNF
+
+6)  musician( per_id, mus_type)
+
+Primary key: per_id
+
+Candidate key: per_id
+Prime attributes: per_id
+
+Functional dependencies:
+Per_id→ mus_type
+
+There is only one functional dependency so it is in BCNF
+
+7). fillers( per_id, fil_type)
+
+Primary key: per_id
+
+Candidate key: per_id
+Prime attributes: per_id
+
+Functional dependencies:
+per_id→fil_type
+
+There is only one functional dependency so it is in BCNF
+8). anchor( per_id, gender)
+
+Primary key: per_id
+
+Candidate key: per_id
+Prime attributes: per_id
+
+Functional dependencies:
+per_id→gender
+
+There is only one functional dependency so it is in BCNF
+
+9). transportation(cost_per_km,no_of_seats,vehicle_name)
+
+Primary key: vehicle_name
+
+Candidate key: vehicle_name
+Prime attributes: vehicle_name
+
+Functional dependencies:
+vehicle_name → cost_per_km, no_of_seats
+
+There is only one functional dependency so it is in BCNF
+
+10). parlour(par_id,par_name,par_mail_id,par_add)
+
+Primary key: par_id
+
+Candidate key: par_id, (par_name par_add), par_mail_id
+Prime attributes: par_id, par_mail_id, par_add, par_name
+
+Functional dependencies:
+par_id→ par_name, par_mail_id, par_add
+par_mail_id → par_id, par_add, par_name
+par_name par_add → par_id, par_mail_id
+
+As left side dependencies are a superkey in each FD. Hence, it is in BCNF. If the relational schema is in BCNF then all the redundancy based on functional dependencies has been removed, although other types of redundancy may still exist. A relational schema R is in Boyce-codd normal form if and only if for every one of its dependencies is a trivial functional dependency, provided the determinant  is a super key.
+
+11). food(cost,f_type)
+
+Primary key:  f_ type
+
+Candidate key:  f_type
+
+Prime attributes:-  f_type
+
+Functional  Dependencies:-
+f_type → cost
+There is only one functional dependency so it is in BCNF
+
+12). caterers(cat_id,cat_name,cat_mail_id,cat_add)
+
+Primary key:   cat_id,
+
+Candidate key:  cat_id,   cat_mail_id,   (cat_name cat_add)
+
+Prime attributes:-  cat_id, cat_name,  cat_mail_id,  cat_add
+
+Functional  Dependencies:-
+cat_id → cat_name, cat_mail_id, cat_add
+cat_mail_id → cat_id, cat_name, cat_add
+cat_name cat_add → cat_id, cat_mail_id
+
+As left side dependencies are a superkey in each FD. Hence, it is in BCNF. If the relational schema is in BCNF then all the redundancy based on functional dependencies has been removed, although other types of redundancy may still exist. A relational schema R is in Boyce-codd normal form if and only if for every one of its dependencies is a trivial functional dependency, provided the determinant is a super key.
+
+13) performer(per_id,per_fname,per_lname,per_mail_id,per_add,per_salary)
+
+Primary key: per_id
+
+Candidate key: per_id, per_mail_id, (per_fname per_lname per_add)
+Prime attributes: per_id, per_mail_id, per_fname, per_lname, per_add
+
+Functional dependencies:
+per_id  → per_fname,per_lname,per_mail_id,per_add,per_salary
+per_mail_id  → per_fname,per_lname,per_id,per_add,per_salary
+per_fname per_lname per_add → per_mail_id,per_id,per_salary
+As left side dependencies are a superkey in each FD. Hence, it is in BCNF. If the relational schema is in BCNF then all the redundancy based on functional dependencies has been removed, although other types of redundancy may still exist. A relational schema R is in Boyce-codd normal form if and only if for every one of its dependencies is a trivial functional dependency, provided the determinant is a super key.
+
+14) makeup(m_type, charge)
+
+Primary key: m_type
+
+Candidate key: m_type
+Prime attributes: m_type
+
+Functional dependencies:
+m_type → charge
+
+There is only one functional dependency so it is ini BCNF
+
+15) decorators(dec_id,dec_add,dec_mail_id,dec_name)
+
+Primary key: dec_id
+
+Candidate key: dec_id, (dec_name dec_add), dec_mail_id
+Prime attributes: dec_id, dec_mail_id, dec_name, dec_add
+
+Functional dependencies:
+dec_id→ dec_name, dec_mail_id, dec_add
+dec_mail_id → dec_id, dec_add, dec_name
+dec_name dec_add → dec_id, dec_mail_id
+As left side dependencies are a superkey in each FD. Hence, it is in BCNF. If the relational schema is in BCNF then all the redundancy based on functional dependencies has been removed, although other types of redundancy may still exist. A relational schema R is in Boyce-codd normal form if and only if for every one of its dependencies is a trivial functional dependency, provided the determinant is a super key.
+16) decoration(d_type,d_charge)
+
+Primary key: d_type
+
+Candidate key: d_type
+Prime attributes: d_type
+
+Functional dependencies:
+d_type → d_charge
+As there is only one functional dependency so it is in BCNF.
+
+17) Ecompany(e_id,e_add,e_name,e_mail_id)
+
+Primary key: e_id
+
+Candidate key: e_id, (e_name e_add), e_mail_id
+Prime attributes: e_id, e_mail_id, e_add, e_name
+
+Functional dependencies:
+e_id→ e_name, e_mail_id, e_add
+e_mail_id → e_id, e_add, e_name
+e_name e_add → e_id, e_mail_id
+As left side dependencies are a superkey in each FD. Hence, it is in BCNF. If the relational schema is in BCNF then all the redundancy based on functional dependencies has been removed, although other types of redundancy may still exist. A relational schema R is in Boyce-codd normal form if and only if for every one of its dependencies is a trivial functional dependency, provided the determinant is a super key.
+
+
+18) Elec_equip(el_id,el_name,cost)
+
+Primary key: el_id
+
+Candidate key: el_id, el_name
+Prime attributes: el_id, el_name
+
+Functional dependencies:
+el_id→ el_name, cost
+el_name→ el_id, cost
+As left side dependencies are a superkey in each FD. Hence, it is in BCNF. If the relational schema is in BCNF then all the redundancy based on functional dependencies has been removed, although other types of redundancy may still exist. A relational schema R is in Boyce-codd normal form if and only if for every one of its dependencies is a trivial functional dependency, provided the determinant is a super key.
+
+19). photographers(p_id,p_fname,p_lname,p_add,p_mail_id,p_charges)
+Primary key:   p_id
+
+Candidate key:  p_mail_id, p_id,( p_fname p_lname p_add)
+
+Prime attributes:-   p_mail_id, p_fname, p_lname, p_add, p_id
+
+Functional  Dependencies:-
+p_id  →   p_mail_id, p_fname, p_lname, p_add,p_charges
+p_mail_id  →  p_id, p_fname, p_lname,p_add,p_charges
+p_fname p_lname p_add →  p_id, p_mail_id, p_charges
+As left side dependencies are a superkey in each FD. Hence, it is in BCNF. If the relational schema is in BCNF then all the redundancy based on functional dependencies has been removed, although other types of redundancy may still exist. A relational schema R is in Boyce-codd normal form if and only if for every one of its dependencies is a trivial functional dependency, provided the determinant is a super key.
+
+
+20) informals(I_id,I_name,I_type,I_add,I_mail_id,I_cost)
+
+Primary key: I_id
+
+Candidate key: I_id,( I_name I_add), I_mail_id, I_type
+Prime attributes: I_id, I_mail_id, I_name, I_add,I_type
+
+Functional dependencies:
+I_id→ I_name, I_mail_id, I_add, type, I_cost
+I_mail_id → I_id, I_add, I_name, type, I_cost
+I_name I_add → I_id, I_mail_id, type, I_cost
+type → I_id, I_mail_id, I_add, I_name, I_cost
+As left side dependencies are a superkey in each FD. Hence, it is in BCNF. If the relational schema is in BCNF then all the redundancy based on functional dependencies has been removed, although other types of redundancy may still exist. A relational schema R is in Boyce-codd normal form if and only if for every one of its dependencies is a trivial functional dependency, provided the determinant is a super key.
+
+21). t_company(t_id,t_phn,t__add,t_name)
+
+Primary key: t_id
+t_phn can have multivalued data because of phone number hence table
+needs to be divided
+t_company1(t_id,t__add,t_name)
+t_company2(t_id,t_phn)
+
+i).  t_company1(t_id,t__add,t_name)
+
+Primary key:   t_id
+
+Candidate key:  t_id,  t_name t_add,
+
+Prime attributes:-   t_id, t_name, t_add
+
+Functional  Dependencies:-
+t_id →t_name, t_add
+t_name t_add →t_id
+As left side dependencies are a superkey in each FD. Hence, it is in BCNF. If the relational schema is in BCNF then all the redundancy based on functional dependencies has been removed, although other types of redundancy may still exist. A relational schema R is in Boyce-codd normal form if and only if for every one of its dependencies is a trivial functional dependency, provided the determinant is a super key.
+ii).   t_company2(t_id,t_phn)
+
+Primary key:   t_id
+
+Candidate key:  t_id
+
+Prime attributes:-   t_id
+
+Functional  Dependencies:-
+t_id →t_phn
+There is only one functional dependency so it is in BCNF
+
+22) venueaddress(v_id, pincode, city, state, line)
+
+Primary key : (v_id, pincode)
+
+Candidate key : (v_id, pincode)
+
+Prime attributes : v_id, pincode
+
+Functional Dependencies -
+
+v_id → pincode,  city, state, line1, line2
+
+pincode → city
+
+pincode → state
+
+city → state
+
+Canonical cover -
+
+v_id  pincode →  city, state, line1, line2
+
+pincode → city, state
+
+Since (pincode) is a subset of the primary key the table is not even in 2NF. Hence
+
+we will decompose the table as follows -
+
+venueaddress1(v_id, pincode, line1, line2)
+
+venueaddress2(pincode, city, state)
+
+As left side dependencies are a superkey in each FD. Hence, it is in BCNF. If the relational schema is in BCNF then all the redundancy based on functional dependencies has been removed, although other types of redundancy may still exist. A relational schema R is in Boyce-codd normal form if and only if for every one of its dependencies is a trivial functional dependency, provided the determinant is a super key.
+
+23) employees(emp_id,emp_fname,emp_lname,emp_add,emp_phn,emp_salary)
+
+Primary key: emp_id
+
+emp_phn has multivalued data and can be divided further. Therefore:
+
+       i)  employees1(emp_id,emp_fname,emp_lname,emp_add,emp_salary)
+ii) employees2(emp_id, emp_phn)
+
+i) employees1(emp_id,emp_fname,emp_lname,emp_add,emp_salary)
+Primary key: emp_id
+Candidate key: emp_id, (emp_fname emp_lname emp_add), emp_mail_id
+Prime attributes: emp_id, emp_mail_id, emp_fname, emp_lname, emp_add
+
+Functional dependencies:
+emp_id→ emp_fname,emp_lname,emp_mail_id,emp_add,emp_salary
+emp_mail_id → emp_id,emp_add, emp_fname,emp_lname,emp_salary
+emp_fname emp_lname emp_add → emp_id, emp_mail_id,emp_salary
+
+As left side dependencies are a superkey in each FD. Hence, it is in BCNF. If the relational schema is in BCNF then all the redundancy based on functional dependencies has been removed, although other types of redundancy may still exist. A relational schema R is in Boyce-codd normal form if and only if for every one of its dependencies is a trivial functional dependency, provided the determinant is a super key.
+
+ii) employees2(emp_id,emp_phn)
+
+Primary key: emp_id
+
+Candidate key: emp_id, emp_phn
+Prime attributes: emp_id
+
+Functional dependencies:
+emp_id→ emp_phn
+There is only one functional dependency therefore it is in BCNF
+
+24) event (eve_id, eve_date, eve_time, eve_feedback, eve_type, eve_budget,    eve_trans_charges)
+
+Primary key: eve_id
+
+Candidate key: eve_id
+Prime attributes: eve_id
+
+Functional dependencies:
+eve_id → eve_date, eve_time, eve_feedback, eve_type, eve_budget,
+eve_trans_charges
+
+There is only one FD so it is in BCNF
+
+
+Relations :-
+
+1)supplied_by(e_id,el_id)
+
+This relation connects Electronic equipment with ECompany,
+Many electronic
+Primary key: e_id,el_id
+Candidate key: e_id,el_id
+Prime attributes: e_id,el_id
+
+Functional dependencies:
+No Functional Dependencies
+Hence it is in BCNF.
+
+2)Provided_by(t_id,v_name)
+
+Primary key: t_id, v_name
+
+Candidate key:  t_id, v_name
+Prime attributes:  t_id, v_name
+
+Functional dependencies:
+No Functional Dependencies
+Hence it is in BCNF.
+
+3)Served_by(type,cat_id)
+
+Primary key: type, cat_id
+
+Candidate key:  type, cat_id
+Prime attributes:  type, cat_id
+
+Functional dependencies:
+No Functional Dependencies
+Hence it is in BCNF.
+
+4)Arranged_for(eve_id,type_of_vechile)
+Primary key: Eve_id, type_of_vehicle
+
+Candidate key:  Eve_id, type_of_vehicle
+Prime attributes:  Eve_id, type_of_vehicle
+
+Functional dependencies:
+No Functional Dependencies
+Hence it is in BCNF.
+Hence it is in BCNF.
+
+5)needs(eve_id,el_id)
+Primary key: Eve_id, el_id
+
+Candidate key:  Eve_id, el_id
+Prime attributes:  Eve_id, el_id
+
+Functional dependencies:
+No Functional Dependencies
+Hence it is in BCNF.
+
+6)Conducted(eve_id,l_id)
+Primary key: Eve_id, I_id
+
+Candidate key:  Eve_id,I_id
+Prime attributes:  Eve_id, I_id
+
+Functional dependencies:
+No Functional Dependencies
+Hence it is in BCNF.
+
+7)Performs_in(eve_id,per_id)
+
+Primary key: Eve_id, per_id
+
+Candidate key:  Eve_id, per_id
+Prime attributes:  Eve_id, per_id
+
+Functional dependencies:
+No Functional Dependencies
+Hence it is in BCNF.
+
+8)appointed_to(eve_id,emp_id)
+
+Primary key: Eve_id, emp_id
+
+Candidate key:  Eve_id, emp_id
+Prime attributes:  Eve_id, emp_id
+Functional dependencies:
+No Functional Dependencies
+Hence it is in BCNF.
+
+
+CONVERTING INTO RELATIONAL TABLES:
+
+Many to one relationships:
+
+1. events(eve_id not null, eve_date, eve_date, eve_time, eve_feedback, eve_type, eve_budget,eve_trans_charge,primary key(eve_id),FOREIGN KEY (m_type) REFERENCES makeup(m_type) on delete cascade on update cascade)
+2. events(eve_id not null, eve_date, eve_date, eve_time, eve_feedback, eve_type, eve_budget,eve_trans_charge,primary key(eve_id),FOREIGN KEY (emp_id) REFERENCES employees(emp_id) on delete cascade on update cascade)
+3. events(eve_id not null, eve_date, eve_date, eve_time, eve_feedback, eve_type, eve_budget,eve_trans_charge,primary key(eve_id),FOREIGN KEY (p_id) REFERENCES photographers(p_id) on delete cascade on update cascade)
+4. events(eve_id not null, eve_date, eve_date, eve_time, eve_feedback, eve_type, eve_budget,eve_trans_charge,primary key(eve_id),FOREIGN KEY (v_id) REFERENCES venue1(v_id) on delete cascade on update cascade)
+5. events(eve_id not null, eve_date, eve_date, eve_time, eve_feedback, eve_type, eve_budget,eve_trans_charge,primary key(eve_id),FOREIGN KEY (c_id) REFERENCES customer1(c_id) on delete cascade on update cascade)
+6. events(eve_id not null, eve_date, eve_date, eve_time, eve_feedback, eve_type, eve_budget,eve_trans_charge,primary key(eve_id),FOREIGN KEY (f_type) REFERENCES food(f_type) on delete cascade on update cascade)
+7. events(eve_id not null, eve_date, eve_date, eve_time, eve_feedback, eve_type, eve_budget,eve_trans_charge,primary key(eve_id),FOREIGN KEY (d_type) REFERENCES decoration(d_type) on delete cascade on update cascade)
+
+Converting ISA hierarchy
+
+1. managers (emp_id primary key not null, department, FOREIGN KEY (emp_id) REFERENCES employees(emp_id))
+2. logistics (emp_id primary key not null, workallotted, FOREIGN KEY (emp_id) REFERENCES employees(emp_id))
+3. dancers (per_id primary key not null, forte, FOREIGN KEY (per_id) REFERENCES performers(per_id))
+4. fillers (per_id primary key not null, fil_type, FOREIGN KEY (per_id) REFERENCES performers(per_id))
+5. anchors (per_id primary key not null, gender, FOREIGN KEY (per_id) REFERENCES performers(per_id))
+6. musicians (per_id primary key not null, mus_type, FOREIGN KEY (per_id) REFERENCES performers(per_id))
+
+Converting Many to Many relationships:
+
+1. Appointed to(emp_id , eve_id ,primary key(emp_id , eve_id), FOREIGN KEY (emp_id) REFERENCES employees(emp_id),  FOREIGN KEY (eve_id) REFERENCES events(eve_id));
+2. conducted(I_id , eve_id ,primary key(I_id , eve_id), FOREIGN KEY (I_id) REFERENCES informals(I_id),  FOREIGN KEY (eve_id) REFERENCES events(eve_id));
+3. Supplied by(e_id , el_id ,primary key(e_id , el_id), FOREIGN KEY (e_id) REFERENCES ecompany(e_id),  FOREIGN KEY (el_id) REFERENCES electronic equipments(el_id));
+4. provided(t_id , v_name ,primary key(t_id , v_name, FOREIGN KEY (t_id) REFERENCES tcompany1(t_id),  FOREIGN KEY (v_name) REFERENCES transportation(v_name));
+5. Served by(cat_id , f_type ,primary key(cat_id , f_type), FOREIGN KEY (cat_id) REFERENCES caterers(cat_id),  FOREIGN KEY (f_type) REFERENCES food(f_type));
+6. Arranged for(v_name , eve_id ,primary key(v_name , eve_id), FOREIGN KEY (v_name) REFERENCES transportation(v_name),  FOREIGN KEY (eve_id) REFERENCES events(eve_id));
+7. needs(el_id , eve_id ,primary key(el_id , eve_id), FOREIGN KEY (el_id) REFERENCES electronic equipments(el_id),  FOREIGN KEY (eve_id) REFERENCES events(eve_id));
+8. Performs in(per_id , eve_id ,primary key(per_id , eve_id), FOREIGN KEY (per_id) REFERENCES performers(per_id),  FOREIGN KEY (eve_id) REFERENCES events(eve_id));
+
+SQL CODE:
+
+1 . CREATE TABLE  `mydb`.`customer1` (
+`c_id` VARCHAR(20) NOT NULL,
+`c_fname` VARCHAR(20) NOT NULL,
+`c_lname` VARCHAR(25) NULL,
+`c_add` VARCHAR(45) NOT NULL,
+`c_username` VARCHAR(45) NOT NULL,
+`c_password` VARCHAR(45) NOT NULL,
+`c_discount` FLOAT NULL,
+`c_mail_id` VARCHAR(45) NOT NULL,
+UNIQUE INDEX `c_username_UNIQUE` (`c_username` ),
+UNIQUE INDEX `c_mail_id_UNIQUE` (`c_mail_id` ),
+UNIQUE INDEX `c_id_UNIQUE` (`c_id` ),
+PRIMARY KEY (`c_id`))
+
+2. CREATE TABLE `mydb`.`customer2` (
+`c_phn` VARCHAR(11) NOT NULL,
+`c_id1` VARCHAR(20) NOT NULL,
+PRIMARY KEY (`c_id1`),
+UNIQUE INDEX `c_id_UNIQUE` (`c_id1` ),
+CONSTRAINT `c_id1`
+FOREIGN KEY (`c_id1`)
+REFERENCES `mydb`.`customer1` (`c_id`)
+
+3. CREATE TABLE  `mydb`.`employees1` (
+`emp_id` VARCHAR(20) NOT NULL,
+`emp_fname` VARCHAR(20) NOT NULL,
+`emp_lname` VARCHAR(20) NULL,
+`emp_add` VARCHAR(45) NOT NULL,
+`emp_salary` DECIMAL(10) NOT NULL,
+PRIMARY KEY (`emp_id`),
+UNIQUE INDEX `emp_id_UNIQUE` (`emp_id` ))
+
+4. CREATE TABLE IF `mydb`.`logistics` (
+`workalloted` VARCHAR(30) NULL,
+`emp_id4` VARCHAR(20) NOT NULL,
+PRIMARY KEY (`emp_id4`),
+CONSTRAINT `emp_id4`
+FOREIGN KEY (`emp_id4`)
+REFERENCES `mydb`.`employees1` (`emp_id`)
+
+5. CREATE TABLE  `mydb`.`performers` (
+`per_id` VARCHAR(20) NOT NULL,
+`per_fname` VARCHAR(20) NOT NULL,
+`per_lname` VARCHAR(20) NULL,
+`per_mail_id` VARCHAR(25) NOT NULL,
+`per_add` VARCHAR(45) NOT NULL,
+PRIMARY KEY (`per_id`),
+UNIQUE INDEX `per_id_UNIQUE` (`per_id` ),
+UNIQUE INDEX `per_mail_id_UNIQUE` (`per_mail_id` ))
+
+6. CREATE TABLE  `mydb`.`dancers` (
+`forte` VARCHAR(40) NOT NULL,
+`per_id4` VARCHAR(20) NOT NULL,
+PRIMARY KEY (`per_id4`),
+CONSTRAINT `per_id4`
+FOREIGN KEY (`per_id4`)
+REFERENCES `mydb`.`performers` (`per_id`))
+
+7. CREATE TABLE  `mydb`.`venue1` (
+`v_id` VARCHAR(20) NOT NULL,
+`v_name` VARCHAR(45) NOT NULL,
+`capacity` BIGINT(20) NOT NULL,
+`v_add` VARCHAR(45) NOT NULL,
+`v_rent` FLOAT NOT NULL,
+PRIMARY KEY (`v_id`),
+UNIQUE INDEX `v_id_UNIQUE` (`v_id` ))
+
+8. CREATE TABLE `mydb`.`venue2` (
+`v_phn` VARCHAR(20) NOT NULL,
+`v_id1` VARCHAR(20) NOT NULL,
+PRIMARY KEY (`v_id1`),
+CONSTRAINT `v_id`
+FOREIGN KEY (`v_id1`)
+REFERENCES `mydb`.`venue1` (`v_id`))
+
+9. CREATE TABLE  `mydb`.`managers` (
+`department` VARCHAR(25) NOT NULL,
+`emp_id2` VARCHAR(20) NOT NULL,
+PRIMARY KEY (`emp_id2`),
+CONSTRAINT `emp_id2`
+FOREIGN KEY (`emp_id2`)
+REFERENCES `mydb`.`employees1` (`emp_id`))
+
+10. CREATE TABLE  `mydb`.`musician` (
+`mus_type` VARCHAR(30) NOT NULL,
+`per_id2` VARCHAR(20) NOT NULL,
+PRIMARY KEY (`per_id2`),
+CONSTRAINT `per_id2`
+FOREIGN KEY (`per_id2`)
+REFERENCES `mydb`.`performers` (`per_id`))
+
+11. CREATE TABLE  `mydb`.`fillers` (
+`fil_type` VARCHAR(30) NOT NULL,
+`per_id5` VARCHAR(20) NOT NULL,
+PRIMARY KEY (`per_id5`),
+CONSTRAINT `per_id5`
+FOREIGN KEY (`per_id5`)
+REFERENCES `mydb`.`performers` (`per_id`))
+
+12. CREATE TABLE  `mydb`.`anchor` (
+`gender` CHAR(1) NOT NULL,
+`per_id3` VARCHAR(20) NOT NULL,
+PRIMARY KEY (`per_id3`),
+CONSTRAINT `per_id3`
+FOREIGN KEY (`per_id3`)
+REFERENCES `mydb`.`performers` (`per_id`))
+
+13. CREATE TABLE  `mydb`.`decoration` (
+`d_type` VARCHAR(30) NOT NULL,
+`charge` DECIMAL(10) NOT NULL,
+PRIMARY KEY (`d_type`),
+UNIQUE INDEX `d_type_UNIQUE` (`d_type` ))
+
+14. CREATE TABLE  `mydb`.`decorators` (
+`dec_id` VARCHAR(20) NOT NULL,
+`dec_add` VARCHAR(45) NOT NULL,
+`dec_mail_id` VARCHAR(20) NOT NULL,
+`dec_name` VARCHAR(45) NOT NULL,
+`dec_type` VARCHAR(45) NOT NULL,
+PRIMARY KEY (`dec_id`, `dec_type`),
+UNIQUE INDEX `dec_id_UNIQUE` (`dec_id` ),
+UNIQUE INDEX `dec_mail_id_UNIQUE` (`dec_mail_id` ),
+INDEX `dec_type_idx` (`dec_type` ),
+CONSTRAINT `dec_type`
+FOREIGN KEY (`dec_type`)
+REFERENCES `mydb`.`decoration` (`d_type`))
+
+15. CREATE TABLE  `mydb`.`transportation` (
+`cost_per_km` FLOAT NOT NULL,
+`no._of_seats` INT NOT NULL,
+`v_name` VARCHAR(40) NOT NULL,
+PRIMARY KEY (`v_name`))
+
+16. CREATE TABLE  `mydb`.`makeup` (
+`m_type` VARCHAR(45) NOT NULL,
+`m_charge` DECIMAL(10) NOT NULL,
+PRIMARY KEY (`m_type`))
+
+17. CREATE TABLE  `mydb`.`parlour` (
+`par_id` VARCHAR(20) NOT NULL,
+`par_name` VARCHAR(45) NOT NULL,
+`par_mail_id` VARCHAR(35) NOT NULL,
+`par_add` VARCHAR(50) NOT NULL,
+`makeup_m_type` VARCHAR(45) NOT NULL,
+PRIMARY KEY (`par_id`),
+INDEX `fk_parlour_makeup1_idx` (`makeup_m_type` ),
+CONSTRAINT `makeup_m_type`
+FOREIGN KEY (`makeup_m_type`)
+REFERENCES `mydb`.`makeup` (`m_type`)
+
+18. CREATE TABLE  `mydb`.`food` (
+`cost` DECIMAL NOT NULL,
+`f_type` VARCHAR(45) NOT NULL,
+PRIMARY KEY (`f_type`),
+UNIQUE INDEX `f_type_UNIQUE` (`f_type` ))
+
+19. CREATE TABLE  `mydb`.`caterers` (
+`cat_id` VARCHAR(20) NOT NULL,
+`cat_name` VARCHAR(45) NOT NULL,
+`cat_mail_id` VARCHAR(20) NOT NULL,
+`cat_add` VARCHAR(45) NOT NULL,
+PRIMARY KEY (`cat_id`),
+UNIQUE INDEX `cat_mail_id_UNIQUE` (`cat_mail_id` ))
+
+20. CREATE TABLE `mydb`.`Ecompany` (
+`e_id` VARCHAR(20) NOT NULL,
+`e_add` VARCHAR(45) NOT NULL,
+`e_name` VARCHAR(45) NOT NULL,
+`e_mail_id` VARCHAR(20) NOT NULL,
+PRIMARY KEY (`e_id`),
+UNIQUE INDEX `e_mail_id_UNIQUE` (`e_mail_id` ),
+UNIQUE INDEX `e_add_UNIQUE` (`e_add` ))
+21. CREATE TABLE `mydb`.`Elec_equip` (
+`el_id` VARCHAR(20) NOT NULL,
+`el_name` VARCHAR(45) NOT NULL,
+`cost` DECIMAL(20) NOT NULL,
+PRIMARY KEY (`el_id`),
+UNIQUE INDEX `el_id_UNIQUE` (`el_id` ))
+
+22. CREATE TABLE  `mydb`.`photographers` (
+`p_id` VARCHAR(20) NOT NULL,
+`p_fname` VARCHAR(20) NOT NULL,
+`p_lname` VARCHAR(20) NULL,
+`p_add` VARCHAR(40) NOT NULL,
+`p_mail_id` VARCHAR(20) NOT NULL,
+`p_charges` DECIMAL(20) NULL,
+PRIMARY KEY (`p_id`),
+UNIQUE INDEX `p_id_UNIQUE` (`p_id` ),
+UNIQUE INDEX `p_mail_id_UNIQUE` (`p_mail_id` ))
+
+23. CREATE TABLE  `mydb`.`informals` (
+`I_id` VARCHAR(20) NOT NULL,
+`I_name` VARCHAR(25) NOT NULL,
+`I_type` VARCHAR(45) NOT NULL,
+`I_add` VARCHAR(45) NOT NULL,
+`I_mail_id` VARCHAR(20) NOT NULL,
+PRIMARY KEY (`I_id`),
+UNIQUE INDEX `I_id_UNIQUE` (`I_id` ),
+UNIQUE INDEX `I_mail_id_UNIQUE` (`I_mail_id` ),
+UNIQUE INDEX `I_add_UNIQUE` (`I_add` ),
+UNIQUE INDEX `I_type_UNIQUE` (`I_type` ))
+
+24. CREATE TABLE `mydb`.`t_company1` (
+`t_id` VARCHAR(20) NOT NULL,
+`t_add` VARCHAR(45) NOT NULL,
+`t_name` VARCHAR(25) NOT NULL,
+PRIMARY KEY (`t_id`))
+
+25. CREATE TABLE  `mydb`.`t_company2` (
+`t_phn` BIGINT(11) NOT NULL,
+`t_id2` VARCHAR(20) NOT NULL,
+UNIQUE INDEX `t_phn_UNIQUE` (`t_phn` ),
+PRIMARY KEY (`t_id2`),
+CONSTRAINT `t_id2`
+FOREIGN KEY (`t_id2`)
+REFERENCES `mydb`.`t_company1` (`t_id`))
+
+26. CREATE TABLE  `mydb`.`venueaddress1` (
+`pincode` VARCHAR(8) NOT NULL,
+`line1` VARCHAR(45) NULL,
+`line2` VARCHAR(45) NULL,
+`v_id2` VARCHAR(20) NOT NULL,
+PRIMARY KEY (`pincode`, `v_id2`),
+UNIQUE INDEX `pincode_UNIQUE` (`pincode` ),
+INDEX `v_id2_idx` (`v_id2` ),
+CONSTRAINT `v_id2`
+FOREIGN KEY (`v_id2`)
+REFERENCES `mydb`.`venue1` (`v_id`)
+
+27. CREATE TABLE  `mydb`.`venueaddress2` (
+`city` VARCHAR(15) NOT NULL,
+`state` VARCHAR(15) NOT NULL,
+`pincode1` VARCHAR(8) NOT NULL,
+PRIMARY KEY (`pincode1`),
+CONSTRAINT `pincode1`
+FOREIGN KEY (`pincode1`)
+REFERENCES `mydb`.`venueaddress1` (`pincode`))
+
+28. CREATE TABLE  `mydb`.`employees2` (
+`emp_phn` VARCHAR(11) NOT NULL,
+`emp_id3` VARCHAR(20) NOT NULL,
+UNIQUE INDEX `emp_phn_UNIQUE` (`emp_phn` ),
+PRIMARY KEY (`emp_id3`),
+CONSTRAINT `emp_id3`
+FOREIGN KEY (`emp_id3`)
+REFERENCES `mydb`.`employees1` (`emp_id`))
+
+29. CREATE TABLE IF NOT EXISTS `mydb`.`event` (
+`eve_id` VARCHAR(20) NOT NULL,
+`eve_date` DATE NOT NULL,
+`eve_time` TIME NOT NULL,
+`eve_feedback` VARCHAR(59) NULL,
+`eve_type` VARCHAR(25) NOT NULL,
+`eve_budget` BIGINT(20) NOT NULL,
+`eve_trans_charges` DECIMAL(10) NULL,
+`emp_id5` VARCHAR(20) NOT NULL,
+`p_id1` VARCHAR(20) NOT NULL,
+`d_type2` VARCHAR(20) NOT NULL,
+`m_type1` VARCHAR(20) NOT NULL,
+`f_type1` VARCHAR(20) NOT NULL,
+`v_id3` VARCHAR(20) NOT NULL,
+`c_id2` VARCHAR(20) NOT NULL,
+PRIMARY KEY (`eve_id`, `emp_id5`, `p_id1`, `d_type2`, `m_type1`, `f_type1`, `v_id3`, `c_id2`),
+UNIQUE INDEX `eve_id_UNIQUE` (`eve_id` ),
+INDEX `emp_id5_idx` (`emp_id5` ),
+INDEX `p_id1_idx` (`p_id1` ),
+INDEX `v_id3_idx` (`v_id3` ),
+INDEX `c_id2_idx` (`c_id2` ),
+INDEX `f_type1_idx` (`f_type1` ),
+INDEX `d_type2_idx` (`d_type2` ),
+INDEX `m_type1_idx` (`m_type1` ),
+CONSTRAINT `emp_id5`
+FOREIGN KEY (`emp_id5`)
+REFERENCES `mydb`.`employees1` (`emp_id`)
+CONSTRAINT `p_id1`
+FOREIGN KEY (`p_id1`)
+REFERENCES `mydb`.`photographers` (`p_id`)
+CONSTRAINT `v_id3`
+FOREIGN KEY (`v_id3`)
+REFERENCES `mydb`.`venue1` (`v_id`)
+CONSTRAINT `c_id2`
+FOREIGN KEY (`c_id2`)
+REFERENCES `mydb`.`customer1` (`c_id`)
+CONSTRAINT `f_type1`
+FOREIGN KEY (`f_type1`)
+REFERENCES `mydb`.`food` (`f_type`)
+CONSTRAINT `d_type2`
+FOREIGN KEY (`d_type2`)
+REFERENCES `mydb`.`decoration` (`d_type`)
+CONSTRAINT `m_type1`
+FOREIGN KEY (`m_type1`)
+REFERENCES `mydb`.`makeup` (`m_type`))
+
+
+
+30. CREATE TABLE `mydb`.`Apointed_to` (
+`emp_id1` VARCHAR(20) NOT NULL,
+`eve_id5` VARCHAR(20) NOT NULL,
+PRIMARY KEY (`emp_id1`, `eve_id5`),
+INDEX `eve_id_idx` (`eve_id5` ),
+CONSTRAINT `emp_id1`
+FOREIGN KEY (`emp_id1`)
+REFERENCES `mydb`.`employees1` (`emp_id`)
+CONSTRAINT `eve_id5`
+FOREIGN KEY (`eve_id5`)
+REFERENCES `mydb`.`event` (`eve_id`))
+
+31 . CREATE TABLE  `mydb`.`conducted` (
+`I_id1` VARCHAR(20) NOT NULL,
+`eve_id3` VARCHAR(20) NOT NULL,
+PRIMARY KEY (`I_id1`, `eve_id3`),
+CONSTRAINT `I_id1`
+FOREIGN KEY (`I_id1`)
+REFERENCES `mydb`.`informals` (`I_id`)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION,
+CONSTRAINT `eve_id3`
+FOREIGN KEY (`eve_id3`)
+REFERENCES `mydb`.`event` (`eve_id`))
+
+
+
+32. CREATE TABLE `mydb`.`supplied by` (
+`e_id2` VARCHAR(20) NOT NULL,
+`el_id2` VARCHAR(20) NOT NULL,
+PRIMARY KEY (`e_id2`, `el_id2`),
+INDEX `el_id_idx` (`el_id2` ),
+CONSTRAINT `e_id2`
+FOREIGN KEY (`e_id2`)
+REFERENCES `mydb`.`Ecompany` (`e_id`)
+CONSTRAINT `el_id2`
+FOREIGN KEY (`el_id2`)
+REFERENCES `mydb`.`Elec_equip` (`el_id`))
+
+33. CREATE TABLE  `mydb`.`provided` (
+`t_id1` VARCHAR(20) NOT NULL,
+`v_name1` VARCHAR(45) NOT NULL,
+PRIMARY KEY (`t_id1`, `v_name1`),
+CONSTRAINT `t_id`
+FOREIGN KEY (`t_id1`)
+REFERENCES `mydb`.`t_company1` (`t_id`)
+CONSTRAINT `v_name`
+FOREIGN KEY (`v_name1`)
+REFERENCES `mydb`.`transportation` (`v_name`))
+
+
+
+34. CREATE TABLE  `mydb`.`served by` (
+`cat_id1` VARCHAR(20) NOT NULL,
+`f_type1` VARCHAR(45) NOT NULL,
+PRIMARY KEY (`cat_id1`, `f_type1`),
+UNIQUE INDEX `cat_id1_UNIQUE` (`cat_id1` ),
+UNIQUE INDEX `f_type1_UNIQUE` (`f_type1` ),
+CONSTRAINT `cat_id`
+FOREIGN KEY (`cat_id1`)
+REFERENCES `mydb`.`caterers` (`cat_id`)
+CONSTRAINT `f_type`
+FOREIGN KEY (`f_type1`)
+REFERENCES `mydb`.`food` (`f_type`))
+
+35. CREATE TABLE  `mydb`.`arranged for` (
+`v_name1` VARCHAR(40) NOT NULL,
+`eve_id2` VARCHAR(20) NOT NULL,
+PRIMARY KEY (`v_name1`, `eve_id2`),
+CONSTRAINT `v_name1`
+FOREIGN KEY (`v_name1`)
+REFERENCES `mydb`.`transportation` (`v_name`)
+CONSTRAINT `eve_id2`
+FOREIGN KEY (`eve_id2`)
+REFERENCES `mydb`.`event` (`eve_id`))
+
+
+36. CREATE TABLE  `mydb`.`needs` (
+`el_id1` VARCHAR(20) NOT NULL,
+`eve_id4` VARCHAR(20) NOT NULL,
+PRIMARY KEY (`el_id1`, `eve_id4`),
+INDEX `eve_id_idx` (`eve_id4` ),
+CONSTRAINT `el_id1`
+FOREIGN KEY (`el_id1`)
+REFERENCES `mydb`.`Elec_equip` (`el_id`)
+CONSTRAINT `eve_id4`
+FOREIGN KEY (`eve_id4`)
+REFERENCES `mydb`.`event` (`eve_id`)
+)
+37. CREATE TABLE  `mydb`.`Performs` (
+`per_id1` VARCHAR(20) NOT NULL,
+`eve_id1` VARCHAR(20) NOT NULL,
+PRIMARY KEY (`per_id1`, `eve_id1`),
+INDEX `eve_id_idx` (`eve_id1` ),
+CONSTRAINT `per_id1`
+FOREIGN KEY (`per_id1`)
+REFERENCES `mydb`.`performers` (`per_id`)
+CONSTRAINT `eve_id1`
+FOREIGN KEY (`eve_id1`)
+REFERENCES `mydb`.`event` (`eve_id`)
+)
+SOFTWARE USED:
+Back-end design: MYSQL work bench 6.3CE.
+OTHER DETAILS:
+TRIGGERS –These are used in calculating budget of particular event. It is stored procedure that automatically executes when an event occurs in the database server.
+
+
+
+
+
+
